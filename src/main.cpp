@@ -8,6 +8,7 @@
 #include <nlohmann/json.hpp>
 
 #include <windows.h>
+#include <winerror.h>
 
 namespace
 {
@@ -96,10 +97,37 @@ namespace
     }
   }
 
+  //! Registers the alicia launch protocol in the registry.
+  //! @param name name of the protocol
+  //! @param path absolute path to the protocol command executable
+  void register_protocol(std::string name, std::string path) {
+    HKEY protocol, command;
+    int result;
+
+    result = RegCreateKeyA(HKEY_CLASSES_ROOT, (LPCSTR) "a2launch", &protocol);
+    if (result != ERROR_SUCCESS)
+      throw std::runtime_error("failed to create registry key HKEY_CLASSES_ROOT\\a2launch");
+
+    result = RegSetValueEx(protocol, nullptr, 0, REG_SZ, (LPBYTE) "URL:a2launch Protocol", 22);
+    if (result != ERROR_SUCCESS)
+      throw std::runtime_error("failed to create registry value in 'HKEY_CLASSES_ROOT\\a2launch'");
+
+    result = RegSetValueEx(protocol, "URL Protocol", 0, REG_SZ, nullptr, 0);
+    if (result != ERROR_SUCCESS)
+      throw std::runtime_error("failed to create registry value in 'HKEY_CLASSES_ROOT\\a2launch'");
+
+    result = RegCreateKeyA(protocol, (LPCSTR) "shell\\open\\command", &command);
+    if (result != ERROR_SUCCESS)
+      throw std::runtime_error("failed to create registry key 'HKEY_CLASSES_ROOT\\shell\\open\\command'");
+
+    auto path_data = path.c_str();
+    result = RegSetValueEx(command, nullptr, 0, REG_SZ, (LPBYTE) path_data, strlen(path_data));
+    if (result != ERROR_SUCCESS)
+      throw std::runtime_error("failed to create registry value for command in 'HKEY_CLASSES_ROOT\\a2launch\\shell\\open\\command'");
+  }
 } // anon namespace
 
 int main(int argc, char** argv) {
-
   Settings settings;
   try
   {
