@@ -100,11 +100,11 @@ namespace
   //! Registers the alicia launch protocol in the registry.
   //! @param name name of the protocol
   //! @param path absolute path to the protocol command executable
-  void register_protocol(std::string name, std::string path) {
+  void register_protocol(const std::string &name, const std::string &path) {
     HKEY protocol, command;
     int result;
 
-    result = RegCreateKeyA(HKEY_CLASSES_ROOT, (LPCSTR) "a2launch", &protocol);
+    result = RegCreateKeyA(HKEY_CLASSES_ROOT, (LPCSTR) name.c_str(), &protocol);
     if (result != ERROR_SUCCESS)
       throw std::runtime_error("failed to create registry key HKEY_CLASSES_ROOT\\a2launch");
 
