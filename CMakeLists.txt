@@ -13,7 +13,8 @@ target_compile_features(project_properties
         INTERFACE cxx_std_20)
 
 add_executable(alicia_launcher
-        src/main.cpp)
+        src/launcher/main.cpp
+        src/launcher/alicia.cpp)
 
 target_link_libraries(alicia_launcher
         PUBLIC project_properties

@@ -1,0 +1,17 @@
+---
+Language: Cpp
+ColumnLimit: 100
+IndentWidth: 2
+PPIndentWidth: 2
+NamespaceIndentation: All
+BreakBeforeBraces: Stroustrup
+AlwaysBreakAfterReturnType: None
+AlwaysBreakAfterDefinitionReturnType: None
+PointerAlignment: Left
+ReferenceAlignment: Left
+AlignAfterOpenBracket: AlwaysBreak
+BinPackArguments: false
+BinPackParameters: false
+SpaceBeforeParens: Never
+UseTab: Never
+SortIncludes: CaseInsensitive

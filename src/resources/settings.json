@@ -1,0 +1,23 @@
+{
+  "webInfoId": "927628CA6D76A6E9162C56D4E3E6D6E3",
+  "webInfoContent": {
+    "GameId": "Alicia",
+    "MemberNo": 0,
+    "LoginId": "<name>",
+    "AuthKey": "<auth_key>",
+    "InstallUrl": "<install_url>",
+    "ServerType": 0,
+    "ServerInfo": ":",
+    "Age": 0,
+    "Sex": 2,
+    "Birthday": "",
+    "WardNo": 0,
+    "CityCode": 0,
+    "ZipCode": "",
+    "PcBangNo": 0,
+    "CloseTime": ""
+  },
+  "executableProgram": "Alicia.exe",
+  "executableArguments": "-GameID 4",
+  "launch": true
+}
